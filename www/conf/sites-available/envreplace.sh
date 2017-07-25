@@ -7,3 +7,5 @@ for file in $DIR/*.conf.var; do
     # we only replace occurances of the variables specified below as first argument
     envsubst '$BOILERPLATE_DOMAIN' < $file > $DIR/`basename $file .var`
 done
+
+cp $DIR/*.conf $DIR/../sites-enabled
