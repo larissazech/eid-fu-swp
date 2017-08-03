@@ -1,3 +1,20 @@
+# Allow HTTP requests only for /check
+server {
+	listen 80;
+	listen [::]:80;
+	server_name $BOILERPLATE_DOMAIN;
+	
+	include global.conf;
+	
+	location /check {
+		proxy_pass http://static/check/;
+	}
+	
+	location / {
+		return 301 https://$host$request_uri;
+	}
+}
+
 server {
 	listen 443;
 	listen [::]:443;
